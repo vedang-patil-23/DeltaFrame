@@ -192,7 +192,7 @@ export default function App() {
         >
           {theme === 'dark' ? '🌙 Dark' : '☀️ Light'}
         </button>
-        <h2 style={{ textAlign: 'center', marginBottom: 8 }}>Orderbook Explorer</h2>
+        <h2 style={{ textAlign: 'center', marginBottom: 8 }}>Orderbook Vision</h2>
         <div style={{ textAlign: 'center', marginBottom: 20, color: '#888', fontSize: 15 }}>
           <span>This is a learning and experimental project, not a production trading tool.</span>
         </div>
