@@ -80,13 +80,6 @@ This repo is the **advanced edition**, with full charting, UX, and fintech best 
 
 ---
 
-## Commit History & Philosophy
-- Each repo has its own focused commit history for clarity.
-- This repo starts fresh, but you can view previous development stages in the linked repos above.
-- I believe in sharing not just my successes, but also my mistakes and refactors—because that's where real learning happens.
-
----
-
 ## License
 MIT (for learning and non-commercial use)
 
