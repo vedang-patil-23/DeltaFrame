@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ccxt": "^4.4.92",
+    "react-table": "^7.8.0"
+  }
+}
