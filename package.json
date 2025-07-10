@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "ccxt": "^4.4.92",
+    "highcharts": "^12.3.0",
+    "highcharts-react-official": "^3.2.2",
     "react-table": "^7.8.0"
   }
 }

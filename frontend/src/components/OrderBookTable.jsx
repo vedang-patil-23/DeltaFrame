@@ -45,7 +45,7 @@ export default function OrderBookTable({ bids, asks }) {
             {bidTable.rows.map(row => {
               bidTable.prepareRow(row);
               return (
-                <tr {...row.getRowProps()} style={{ color: 'green', background: row.index % 2 ? '#f6fff6' : '#fff' }}>
+                <tr {...row.getRowProps()} className="bid" key={row.id}>
                   {row.cells.map(cell => (
                     <td {...cell.getCellProps()} style={{ padding: 4 }}>{formatNum(cell.value)}</td>
                   ))}
@@ -71,7 +71,7 @@ export default function OrderBookTable({ bids, asks }) {
             {askTable.rows.map(row => {
               askTable.prepareRow(row);
               return (
-                <tr {...row.getRowProps()} style={{ color: 'red', background: row.index % 2 ? '#fff6f6' : '#fff' }}>
+                <tr {...row.getRowProps()} className="ask" key={row.id}>
                   {row.cells.map(cell => (
                     <td {...cell.getCellProps()} style={{ padding: 4 }}>{formatNum(cell.value)}</td>
                   ))}
