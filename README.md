@@ -19,10 +19,10 @@ This repo is the latest in a series, and each one is intentionally kept separate
 ## UI Screenshots
 
 Light mode:
-![Orderbook Vision Light](frontend/src/assets/img2.png)
+![Orderbook Vision Light](frontend/src/assets/img1.png)
 
 Dark mode:
-![Orderbook Vision Dark](frontend/src/assets/img1.png)
+![Orderbook Vision Dark](frontend/src/assets/img2.png)
 
 ---
 
