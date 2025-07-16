@@ -97,20 +97,20 @@ a {
   color: var(--color-btn-hover);
   }
 
-.orderbook-table th, .orderbook-table td {
+.deltaframe-table th, .deltaframe-table td {
   color: var(--color-text);
 }
-.orderbook-table th {
+.deltaframe-table th {
   background: var(--color-card);
 }
-.orderbook-table tr {
+.deltaframe-table tr {
   background: none;
 }
-.orderbook-table tr.bid {
+.deltaframe-table tr.bid {
   color: var(--color-table-bid);
   background: var(--color-table-bid-bg);
 }
-.orderbook-table tr.ask {
+.deltaframe-table tr.ask {
   color: var(--color-table-ask);
   background: var(--color-table-ask-bg);
 }
@@ -137,7 +137,7 @@ h1 {
     gap: 20px !important;
     min-width: 0 !important;
   }
-  .orderbook-table,
+  .deltaframe-table,
   .orderbook-charts {
     min-width: 0 !important;
     width: 100% !important;
@@ -157,7 +157,7 @@ h1 {
   .main-flex {
     gap: 12px !important;
   }
-  .orderbook-table,
+  .deltaframe-table,
   .orderbook-charts {
     font-size: 12px !important;
   }

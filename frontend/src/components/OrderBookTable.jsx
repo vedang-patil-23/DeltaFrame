@@ -31,7 +31,7 @@ export default function OrderBookTable({ bids, asks }) {
     <div style={{ display: 'flex', gap: 24 }}>
       <div style={{ flex: 1 }}>
         <div style={{ textAlign: 'center', fontWeight: 600, color: 'green' }}>Bids</div>
-        <table {...bidTable.getTableProps()} style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+        <table {...bidTable.getTableProps()} className="deltaframe-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
           <thead>
             {bidTable.headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -57,7 +57,7 @@ export default function OrderBookTable({ bids, asks }) {
       </div>
       <div style={{ flex: 1 }}>
         <div style={{ textAlign: 'center', fontWeight: 600, color: 'red' }}>Asks</div>
-        <table {...askTable.getTableProps()} style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+        <table {...askTable.getTableProps()} className="deltaframe-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
           <thead>
             {askTable.headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
