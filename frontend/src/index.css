@@ -92,10 +92,10 @@ a {
   font-weight: 500;
   color: var(--color-accent);
   text-decoration: inherit;
-}
-a:hover {
+  }
+  a:hover {
   color: var(--color-btn-hover);
-}
+  }
 
 .orderbook-table th, .orderbook-table td {
   color: var(--color-text);
@@ -118,6 +118,11 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @media (max-width: 900px) {

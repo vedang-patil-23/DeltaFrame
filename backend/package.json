@@ -12,6 +12,9 @@
   "dependencies": {
     "ccxt": "^4.4.92",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "csv-parse": "^6.0.0",
+    "csv-stringify": "^6.6.0",
+    "express": "^5.1.0",
+    "zod": "^4.0.5"
   }
 }
