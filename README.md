@@ -6,7 +6,7 @@ DeltaFrame is an open-source, full-stack crypto order book and trading simulatio
 
 ## Project Background & Learning Journey
 
-DeltaFrame is the next step in my ongoing exploration of financial technology and web app development. My approach is to build, break, and rebuild—learning by doing, making mistakes, and iterating. This project is a direct result of that philosophy.
+DeltaFrame is the next step in my ongoing exploration of financial technology and web app development. My approach is FAFO (fuck around and find out)—learning by doing, making mistakes, and iterating. This project is a direct result of that philosophy.
 
 ### Experiments and Evolution
 - **Initial Storage with CSV:** I began by storing trades and holdings in CSV files for simplicity and transparency. This allowed for easy inspection and quick prototyping, but quickly revealed limitations in reliability, scalability, and data integrity.
@@ -63,9 +63,9 @@ DeltaFrame is the next step in my ongoing exploration of financial technology an
 ## Previous Projects
 
 DeltaFrame builds on lessons learned from earlier projects. You can explore the evolution here:
-- [orderbook-viewer (original/minimal)](https://github.com/vedangp/orderbook-viewer)
-- [orderbook-explorer (intermediate, more features)](https://github.com/vedangp/orderbook-explorer)
-- [orderbook-vision (advanced charting, UI)](https://github.com/vedangp/orderbook-vision)
+- [orderbook-viewer (original/minimal)](https://github.com/vedang-patil-23/orderbook-viewer)
+- [orderbook-explorer (intermediate, more features)](https://github.com/vedang-patil-23/orderbook-explorer)
+- [orderbook-vision (advanced charting, UI)](https://github.com/vedang-patil-23/orderbook-vision)
 
 Each repository represents a distinct stage in my learning process, with its own set of experiments, mistakes, and improvements.
 
