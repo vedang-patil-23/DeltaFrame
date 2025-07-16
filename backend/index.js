@@ -306,6 +306,43 @@ app.post('/api/balance/reset', async (req, res) => {
   }
 });
 
+// GET /api/unrealized-pnl (authoritative unrealized P&L calculation)
+app.get('/api/unrealized-pnl', async (req, res) => {
+  try {
+    const { symbol, price } = req.query;
+    if (!symbol || typeof symbol !== 'string') return res.status(400).json({ error: 'Symbol required' });
+    const currentPrice = parseFloat(price);
+    if (!currentPrice || isNaN(currentPrice) || currentPrice <= 0) return res.status(400).json({ error: 'Valid price required' });
+    const base = symbol.split('/')[0];
+    // Get all trades for this asset
+    const trades = await Trade.findAll({ where: { asset: base } });
+    if (!trades.length) {
+      return res.json({ symbol, quantity: 0, avgBuyPrice: 0, currentPrice, unrealizedPnL: 0 });
+    }
+    // Compute quantity and avg buy price
+    let quantity = 0;
+    let buyAmount = 0, buyValue = 0;
+    for (const t of trades) {
+      if (t.side === 'buy') {
+        quantity += t.amount;
+        buyAmount += t.amount;
+        buyValue += t.amount * t.price;
+      } else if (t.side === 'sell') {
+        quantity -= t.amount;
+      }
+    }
+    let avgBuyPrice = buyAmount > 0 ? buyValue / buyAmount : 0;
+    avgBuyPrice = Math.round(avgBuyPrice * 100) / 100;
+    if (quantity < 0.000001) {
+      return res.json({ symbol, quantity: 0, avgBuyPrice: 0, currentPrice, unrealizedPnL: 0 });
+    }
+    const unrealizedPnL = Math.round((currentPrice - avgBuyPrice) * quantity * 100) / 100;
+    res.json({ symbol, quantity, avgBuyPrice, currentPrice, unrealizedPnL });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to compute unrealized P&L' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 }); 
