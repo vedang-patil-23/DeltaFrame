@@ -1,82 +1,85 @@
-# Orderbook Vision
+# DeltaFrame
 
-Orderbook Vision is a full-stack, open-source crypto order book and chart explorer. This project is not a finished product or a professional trading tool—it's a learning journey, a sandbox for experimentation, and a humble step in my ongoing fintech development.
-
----
-
-## Why This Project?
-
-I built Orderbook Vision as part of a conscious, step-by-step upscaling in fintech and web development. My goal is not to create a perfect app, but to:
-- **Learn** by doing, making mistakes, and iterating
-- **Document** my progress and share my progress
-- **Experiment** with new technologies, libraries, and UI/UX patterns
-- **Showcase** how a project can evolve from minimal to advanced, with each repo as a milestone
-
-This repo is the latest in a series, and each one is intentionally kept separate to make my learning progression transparent. I want others to see not just the end result, but the path, the pivots, and the lessons along the way.
+DeltaFrame is an open-source, full-stack crypto order book and trading simulation app. This project is not a finished product or a professional trading tool—it's a learning experience, a place to experiment, and a record of my journey in fintech and web development.
 
 ---
 
-## UI Screenshots
+## Project Background & Learning Journey
 
-Light mode:
-![Orderbook Vision Light](frontend/src/assets/img1.png)
+DeltaFrame is the next step in my ongoing exploration of financial technology and web app development. My approach is to build, break, and rebuild—learning by doing, making mistakes, and iterating. This project is a direct result of that philosophy.
 
-Dark mode:
-![Orderbook Vision Dark](frontend/src/assets/img2.png)
+### Experiments and Evolution
+- **Initial Storage with CSV:** I began by storing trades and holdings in CSV files for simplicity and transparency. This allowed for easy inspection and quick prototyping, but quickly revealed limitations in reliability, scalability, and data integrity.
+- **Migration to SQLite with Sequelize:** Recognizing the drawbacks of CSV, I migrated the backend to use SQLite with Sequelize ORM. This provided robust data management, transactional safety, and a more realistic foundation for simulating trading activity.
+- **Refactoring Holdings Logic:** Originally, holdings were tracked in a dedicated table. After further research and feedback, I removed the Holdings table and now compute holdings dynamically from the Trades table, ensuring data consistency and reducing redundancy.
+- **Continuous Refactoring:** Throughout development, I have prioritized long-term, production-grade solutions over quick fixes, even if it meant reworking large parts of the codebase. Every pivot and refactor is documented in the commit history and project notes.
 
----
-
-## Features (So Far)
-
-- **Live order book for any supported CCXT exchange and symbol**  
-  Instantly fetches and displays the real-time order book for your chosen exchange and trading pair. The UI is responsive and updates smoothly, with robust error handling for unsupported or offline exchanges.
-
-- **Advanced charting: candlestick, line, area (with zoom, pan, export, tooltips, and theme)**  
-  The chart is powered by Highcharts, offering interactive candlestick, line, and area views. You can zoom and pan with your mouse, and tooltips provide detailed OHLCV data. The chart adapts to both light and dark mode, and is visually clearer and more interactive than in previous versions.
-
-- **Export chart and data: PNG, SVG, PDF, or CSV (via built-in export menu)**  
-  Easily export the current chart as an image (PNG, SVG, PDF) or download the raw data as CSV. The export menu is built-in and works seamlessly in both light and dark mode—no extra setup required.
-
-- **Light/dark mode (auto and manual toggle)**  
-  The entire UI, including the chart, switches instantly between light and dark themes. Colors, backgrounds, and chart elements are all theme-aware for maximum readability and comfort.
-
-- **Responsive, minimal, professional UI**  
-  The layout is fully responsive for desktop, tablet, and mobile. The design is intentionally minimal and modern, with a focus on clarity and usability.
-
-- **Growing chart: chart accumulates new data over time (does not reset)**  
-  Unlike previous versions, the chart now grows as new data arrives, letting you see price action over your entire session. Data is deduplicated and never resets unless you change the exchange or symbol.
-
-- **Snapshot slider for historical order book views**  
-  Use the slider to view historical snapshots of the order book, making it easy to analyze how liquidity and depth change over time.
-
-- **Robust error handling and user experience**  
-  Errors are clearly displayed, loading states are handled gracefully, and the app avoids blank screens or crashes. The experience is much smoother and more reliable than earlier versions.
-
-> **Note:** This project is for educational and experimental purposes only. It is not a production trading tool, and I make no guarantees about reliability, security, or completeness.
+> **Note:** This project is a sandbox for learning. It is not intended for production use, and I make no guarantees about reliability, security, or completeness.
 
 ---
 
-## The Learning Journey: Why So Many Repos?
+## Features
 
-You might wonder: why not just one repo with a long commit history? The answer is intentional: I want to make my learning process visible and accessible. Each repo in this series represents a major milestone, a new lesson, or a significant refactor. This approach:
-- Makes it easy to see my progression and learning over time
-- Keeps each stage focused and clean (no overwhelming commit history)
-- Allows others to follow along, fork, or learn from any stage
-- Encourages me to reflect on what I've learned and what I still need to improve
+- **Live Order Book:**
+  - Fetches and displays real-time order book data for any supported CCXT exchange and trading pair.
+  - Responsive UI with robust error handling for unsupported or offline exchanges.
 
-### Previous repos in this series:
+- **Advanced Charting:**
+  - Interactive candlestick, line, and area charts powered by Highcharts.
+  - Features include zoom, pan, export (PNG, SVG, PDF, CSV), and tooltips with detailed OHLCV data.
+  - Fully theme-aware, supporting both light and dark modes.
+
+- **Trading Simulation:**
+  - Simulate buy/sell trades, track portfolio holdings, and view trade history.
+  - All trades are persisted in SQLite via Sequelize ORM.
+  - Holdings are computed on-the-fly from trade history for accuracy.
+
+- **Portfolio & P&L Tracking:**
+  - View current holdings, trade history, and live unrealized P&L based on the latest market prices.
+  - Portfolio value updates in real time as prices change.
+
+- **Robust Error Handling:**
+  - Clear error messages, graceful loading states, and defensive UI logic to prevent crashes or blank screens.
+
+- **Minimal, Professional UI:**
+  - Clean, responsive design focused on clarity and usability.
+  - Supports both desktop and mobile devices.
+
+---
+
+## Technical Overview
+
+- **Frontend:** React (Vite), Highcharts, modern CSS, responsive design.
+- **Backend:** Node.js, Express, Sequelize ORM, SQLite database.
+- **Data Flow:**
+  - The backend fetches live order book data via CCXT and manages trades/balance in SQLite.
+  - The frontend displays live data, allows simulated trading, and computes portfolio metrics in real time.
+- **Data Model:**
+  - Only Trades and Balance tables are persisted; holdings are derived from trades.
+  - All CSV logic has been removed in favor of robust, transactional database operations.
+
+---
+
+## Previous Projects
+
+DeltaFrame builds on lessons learned from earlier projects. You can explore the evolution here:
 - [orderbook-viewer (original/minimal)](https://github.com/vedangp/orderbook-viewer)
-- [orderbook-explorer (intermediate, with more features)](https://github.com/vedangp/orderbook-explorer)
+- [orderbook-explorer (intermediate, more features)](https://github.com/vedangp/orderbook-explorer)
+- [orderbook-vision (advanced charting, UI)](https://github.com/vedangp/orderbook-vision)
 
-This repo is the **advanced edition**, with full charting, UX, and fintech best practices. But it's still just a step—there's always more to learn.
+Each repository represents a distinct stage in my learning process, with its own set of experiments, mistakes, and improvements.
 
 ---
 
 ## Getting Started
-1. `npm install` in both `backend` and `frontend`
-2. Start backend: `cd backend && npm run dev` (or `node index.js`)
-3. Start frontend: `cd frontend && npm run dev`
-4. Open [http://localhost:5173](http://localhost:5173)
+
+1. Install dependencies in both backend and frontend:
+   - `npm install` (in both `backend` and `frontend` directories)
+2. Start the backend:
+   - `cd backend && npm run dev` (or `node index.js`)
+3. Start the frontend:
+   - `cd frontend && npm run dev`
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
@@ -85,4 +88,4 @@ MIT (for learning and non-commercial use)
 
 ---
 
-**Thank you for checking out Orderbook Vision. If you have feedback, suggestions, or want to share your own learning journey, please open an issue or reach out. This project is a work in progress, and so am I.** 
+**Thank you for exploring DeltaFrame. If you have feedback, suggestions, or want to share your own learning journey, please open an issue or reach out. This project is a work in progress, and so am I.** 
