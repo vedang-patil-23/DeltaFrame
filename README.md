@@ -24,8 +24,6 @@ This project follows the FAFO model (_"fuck around and find out"_)—learning by
 - **UI: Brain First, Face Later:**  
   The UI is deliberately minimal. The backend and core logic are solid—the polish will come as the project matures.
 
-> **Note:** This is a learning project. It’s not production-ready, secure, or optimized. Expect bugs. Embrace them.
-
 ---
 
 ## App Screenshot
