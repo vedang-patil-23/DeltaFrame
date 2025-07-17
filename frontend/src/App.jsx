@@ -372,7 +372,10 @@ export default function App() {
           <button
             onClick={() => {
               if (continuous) setContinuous(false);
-              else setContinuous(true);
+              else {
+                setContinuous(true);
+                fetchOrderbook();
+              }
             }}
             style={{ padding: '0 18px', fontWeight: 600, height: 32 }}
             disabled={!symbol}
@@ -425,7 +428,31 @@ export default function App() {
           <div className="main-flex" style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
             <div className="orderbook-table" style={{ flex: 1 }}>
               <div style={{ maxHeight: 412, minHeight: 220, overflowY: 'auto' }}>
-                <OrderBookTable bids={orderbook.bids} asks={orderbook.asks} />
+                {orderbook.bids.length === 0 && orderbook.asks.length === 0 && symbol ? (
+                  <div style={{
+                    background: '#eaf4fb',
+                    border: '1px solid #b6d6f2',
+                    borderRadius: 10,
+                    minHeight: 412,
+                    height: 412,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#2176ae',
+                    fontSize: 18,
+                    fontWeight: 500,
+                    margin: '0 0 8px 0',
+                    boxSizing: 'border-box',
+                    textAlign: 'center',
+                    whiteSpace: 'normal',
+                    wordBreak: 'break-word',
+                    padding: 24,
+                  }}>
+                    Click <b>Fetch</b>{' '}to see the order book for{' '}<b>{symbol}</b>.
+                  </div>
+                ) : (
+                  <OrderBookTable bids={orderbook.bids} asks={orderbook.asks} />
+                )}
               </div>
               <HoldingsTable
                 holdings={holdings}
@@ -433,6 +460,8 @@ export default function App() {
                 symbol={symbol}
                 onSell={handleSellFromPortfolio}
                 balance={balance}
+                onTradebook={() => setTradebookOpen(true)}
+                onReset={handleReset}
               />
             </div>
             <div className="orderbook-charts" style={{ flex: 1 }}>
@@ -448,10 +477,6 @@ export default function App() {
               />
             </div>
           </div>
-        </div>
-        <div style={{ textAlign: 'center', marginBottom: 24 }}>
-          <button onClick={() => setTradebookOpen(true)} style={{ padding: '8px 22px', fontWeight: 600, borderRadius: 6, border: '1px solid var(--color-border)', background: 'var(--color-btn-bg)', color: 'var(--color-text)', fontSize: 16, marginRight: 12 }}>Tradebook</button>
-          <button onClick={handleReset} style={{ padding: '8px 22px', fontWeight: 600, borderRadius: 6, border: '1px solid #e74c3c', background: '#fff', color: '#e74c3c', fontSize: 16 }}>Reset Portfolio</button>
         </div>
         <TradebookModal
           open={tradebookOpen}

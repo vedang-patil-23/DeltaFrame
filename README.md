@@ -1,77 +1,109 @@
 # DeltaFrame
 
-DeltaFrame is an open-source, full-stack crypto order book and trading simulation app. This project is not a finished product or a professional trading tool—it's a learning experience, a place to experiment, and a record of my journey in fintech and web development.
+**DeltaFrame** is an open-source, full-stack crypto order book and trading simulation app. It's not a finished product or professional trading tool—it's a sandbox for learning, experimenting, and chronicling my journey through fintech and full-stack development.
+
+> TL;DR: Not a product. Not a tool. Just a chaotic fintech project(still underdevelopment) that taught me more than any tutorial ever could.
 
 ---
 
-## Project Background & Learning Journey
+## Project Background & Learning Philosophy
 
-DeltaFrame is the next step in my ongoing exploration of financial technology and web app development. My approach is FAFO (fuck around and find out)—learning by doing, making mistakes, and iterating. This project is a direct result of that philosophy.
+This project follows the FAFO model (_"fuck around and find out"_)—learning by building, breaking things, and iterating. DeltaFrame represents the latest checkpoint in that ongoing process.
 
-### Experiments and Evolution
-- **Initial Storage with CSV:** I began by storing trades and holdings in CSV files for simplicity and transparency. This allowed for easy inspection and quick prototyping, but quickly revealed limitations in reliability, scalability, and data integrity.
-- **Migration to SQLite with Sequelize:** Recognizing the drawbacks of CSV, I migrated the backend to use SQLite with Sequelize ORM. This provided robust data management, transactional safety, and a more realistic foundation for simulating trading activity.
-- **Refactoring Holdings Logic:** Originally, holdings were tracked in a dedicated table. After further research and feedback, I removed the Holdings table and now compute holdings dynamically from the Trades table, ensuring data consistency and reducing redundancy.
-- **Continuous Refactoring:** Throughout development, I have prioritized long-term, production-grade solutions over quick fixes, even if it meant reworking large parts of the codebase. Every pivot and refactor is documented in the commit history and project notes.
+### Key Learning Milestones
 
-> **Note:** This project is a sandbox for learning. It is not intended for production use, and I make no guarantees about reliability, security, or completeness.
+- **CSV to SQLite (Growing Pains):**  
+  Started with CSVs for trade and portfolio storage—simple, transparent, but eventually too limiting. Migrated to SQLite with Sequelize for proper data modeling, transactional safety, and scalability.
+
+- **Refined Holdings Logic:**  
+  Originally used a `Holdings` table. Later removed it and now dynamically compute holdings from trade history to reduce redundancy and improve consistency.
+
+- **Hybrid P&L Engine:**  
+  Frontend calculates live P&L, but always verifies it against the backend (SQLite) as the source of truth. Any mismatches are logged and viewable in a modal for debugging and transparency.
+
+- **UI: Brain First, Face Later:**  
+  The UI is deliberately minimal. The backend and core logic are solid—the polish will come as the project matures.
+
+> **Note:** This is a learning project. It’s not production-ready, secure, or optimized. Expect bugs. Embrace them.
+
+---
+
+## App Screenshot
+
+![DeltaFrame Screenshot](frontend/src/assets/img.png)
+
+*A user mid-DOGE trade. Features shown: live order book, simulated buy/sell panel, holdings tracker, backend-verified P&L.*
 
 ---
 
 ## Features
 
-- **Live Order Book:**
-  - Fetches and displays real-time order book data for any supported CCXT exchange and trading pair.
-  - Responsive UI with robust error handling for unsupported or offline exchanges.
+### Live Order Book
+- Real-time order book data from supported **CCXT** exchanges and trading pairs.
+- Manual fetch (user must click "Fetch").
+- Placeholder UI when no data is loaded.
 
-- **Advanced Charting:**
-  - Interactive candlestick, line, and area charts powered by Highcharts.
-  - Features include zoom, pan, export (PNG, SVG, PDF, CSV), and tooltips with detailed OHLCV data.
-  - Fully theme-aware, supporting both light and dark modes.
+### Interactive Charting
+- Candlestick, line, and area charts via **Highcharts**.
+- Includes zoom, pan, export (PNG, SVG, PDF, CSV), and OHLCV tooltips.
+- Fully responsive and supports light/dark mode.
 
-- **Trading Simulation:**
-  - Simulate buy/sell trades, track portfolio holdings, and view trade history.
-  - All trades are persisted in SQLite via Sequelize ORM.
-  - Holdings are computed on-the-fly from trade history for accuracy.
+### Trading Simulation
+- Simulate buy/sell trades, tracked and persisted via SQLite.
+- Holdings are computed on-the-fly from trade history.
+- Buy/sell panel and cash balance always visible.
 
-- **Portfolio & P&L Tracking:**
-  - View current holdings, trade history, and live unrealized P&L based on the latest market prices.
-  - Portfolio value updates in real time as prices change.
+### Portfolio & P&L
+- View holdings, trade history, and unrealized P&L live.
+- **Hybrid P&L:** Frontend shows live P&L, backend verifies it.
+- All desyncs are logged and viewable in a modal.
+- Portfolio stats (cash, value, trades) are prominently displayed.
 
-- **Robust Error Handling:**
-  - Clear error messages, graceful loading states, and defensive UI logic to prevent crashes or blank screens.
+### Tradebook & Reset
+- Tradebook and "Reset Portfolio" buttons built into the holdings UI.
 
-- **Minimal, Professional UI:**
-  - Clean, responsive design focused on clarity and usability.
-  - Supports both desktop and mobile devices.
+### Defensive UX & Error Handling
+- Helpful error messages and placeholder content.
+- App won’t crash or go blank—even with bad/missing data.
+
+### Minimal, Purpose-Driven UI
+- Clean, responsive design focused on function first.
+- Placeholder content guides users (e.g., “Click Fetch…”).
+- Design polish will come after backend is fully mature.
 
 ---
 
-## Technical Overview
+## 🛠️ Technical Overview
 
-- **Frontend:** React (Vite), Highcharts, modern CSS, responsive design.
-- **Backend:** Node.js, Express, Sequelize ORM, SQLite database.
+| Layer     | Tech Stack                           |
+|-----------|---------------------------------------|
+| Frontend  | React (Vite), Highcharts, modern CSS |
+| Backend   | Node.js, Express, Sequelize, SQLite  |
+
 - **Data Flow:**
-  - The backend fetches live order book data via CCXT and manages trades/balance in SQLite.
-  - The frontend displays live data, allows simulated trading, and computes portfolio metrics in real time.
-- **Data Model:**
-  - Only Trades and Balance tables are persisted; holdings are derived from trades.
-  - All CSV logic has been removed in favor of robust, transactional database operations.
+  - Backend: Fetches live market data via **CCXT**, handles trades and balance storage.
+  - Frontend: Displays charts, order book, trading UI, and computed portfolio metrics.
+
+- **Database Design:**
+  - Tables: `Trades` and `Balance`.
+  - Holdings are computed dynamically—no static `Holdings` table.
+  - Legacy CSV logic has been removed entirely.
 
 ---
 
 ## Previous Projects
 
-DeltaFrame builds on lessons learned from earlier projects. You can explore the evolution here:
-- [orderbook-viewer (original/minimal)](https://github.com/vedang-patil-23/orderbook-viewer)
-- [orderbook-explorer (intermediate, more features)](https://github.com/vedang-patil-23/orderbook-explorer)
-- [orderbook-vision (advanced charting, UI)](https://github.com/vedang-patil-23/orderbook-vision)
+DeltaFrame builds on experiments from earlier stages:
 
-Each repository represents a distinct stage in my learning process, with its own set of experiments, mistakes, and improvements.
+- [orderbook-viewer (very early)](https://github.com/vedang-patil-23/orderbook-viewer)
+- [orderbook-explorer (intermediate)](https://github.com/vedang-patil-23/orderbook-explorer)
+- [orderbook-vision (UI-focused)](https://github.com/vedang-patil-23/orderbook-vision)
+
+Each represents a distinct chapter of trial, error, and learning.
 
 ---
 
-## Getting Started
+##Getting Started
 
 1. Install dependencies in both backend and frontend:
    - `npm install` (in both `backend` and `frontend` directories)
@@ -88,4 +120,4 @@ MIT (for learning and non-commercial use)
 
 ---
 
-**Thank you for exploring DeltaFrame. If you have feedback, suggestions, or want to share your own learning journey, please open an issue or reach out. This project is a work in progress, and so am I.** 
+**Thank you for exploring DeltaFrame. If you have feedback, suggestions, or want to share your own learning journey, please reach out. This project is a work in progress, and so am I.** 
