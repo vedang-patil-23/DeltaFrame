@@ -101,7 +101,7 @@ Each represents a distinct chapter of trial, error, and learning.
 
 ---
 
-##Getting Started
+## Getting Started
 
 1. Install dependencies in both backend and frontend:
    - `npm install` (in both `backend` and `frontend` directories)
