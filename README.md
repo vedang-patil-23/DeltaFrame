@@ -12,7 +12,7 @@ This project follows the FAFO model (_"fuck around and find out"_)—learning by
 
 ### Key Learning Milestones
 
-- **CSV to SQLite (Growing Pains):**  
+- **CSV to SQLite:**  
   Started with CSVs for trade and portfolio storage—simple, transparent, but eventually too limiting. Migrated to SQLite with Sequelize for proper data modeling, transactional safety, and scalability.
 
 - **Refined Holdings Logic:**  
@@ -73,10 +73,10 @@ This project follows the FAFO model (_"fuck around and find out"_)—learning by
 
 ## 🛠️ Technical Overview
 
-| Layer     | Tech Stack                           |
-|-----------|---------------------------------------|
-| Frontend  | React (Vite), Highcharts, modern CSS |
-| Backend   | Node.js, Express, Sequelize, SQLite  |
+| Layer     | Tech Stack                                 |
+|-----------|--------------------------------------------|
+| Frontend  | React (Vite), Highcharts, modern CSS, HTML |
+| Backend   | Node.js, Express, Sequelize, SQLite        |
 
 - **Data Flow:**
   - Backend: Fetches live market data via **CCXT**, handles trades and balance storage.
